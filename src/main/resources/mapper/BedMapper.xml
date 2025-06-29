@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zwh.yyzx.mapper.BedMapper">
+    <resultMap id="BaseResultMap" type="com.zwh.yyzx.pojo.Bed">
+        <id column="id" property="id"/>
+        <result column="room_no" property="roomNo"/>
+        <result column="bed_status" property="bedStatus"/>
+        <result column="remarks" property="remarks"/>
+        <result column="bed_no" property="bedNo"/>
+    </resultMap>
+    <sql id="Base_Colnum_List">
+        id,room_no,bed_status,remarks,bed_no
+    </sql>
+    <select id="selectBedCount" resultType="CwsyBedVo">
+        SELECT
+                (SELECT COUNT(*) FROM bed)zcw,
+                (SELECT COUNT(*) FROM bed WHERE bed_status = 1)kx,
+                (SELECT COUNT(*) FROM bed WHERE bed_status = 2)yr,
+                (SELECT COUNT(*) FROM bed WHERE bed_status = 3)wd
+    </select>
+</mapper>
